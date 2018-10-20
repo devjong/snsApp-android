@@ -27,8 +27,12 @@ class LoginActivity : AppCompatActivity() {
 
     // Firebase Authentication 관리 클래스
     var auth: FirebaseAuth? = null
+
+    // google login
     var googleSignInClient: GoogleSignInClient? = null
     var GOOGLE_LOGIN_CODE = 9001
+
+    // facebook login
     var callbackManager: CallbackManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,6 +116,13 @@ class LoginActivity : AppCompatActivity() {
         startActivityForResult(signInIntent, GOOGLE_LOGIN_CODE)
     }
 
+
+    // 자동 로그인
+    override fun onResume() {
+        super.onResume()
+        moveMainPage(auth?.currentUser)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -150,12 +161,11 @@ class LoginActivity : AppCompatActivity() {
             })
     }
 
-    fun handleFacebookAccessToken(token:AccessToken?) {
+    fun handleFacebookAccessToken(token: AccessToken?) {
         var credential = FacebookAuthProvider.getCredential(token?.token!!)
-        auth?.signInWithCredential(credential)?.addOnCompleteListener {
-            task ->
-            if(task.isSuccessful) {
-//                moveMainPage(auth?.currentUser)
+        auth?.signInWithCredential(credential)?.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                moveMainPage(auth?.currentUser)
             }
         }
 
@@ -170,7 +180,5 @@ class LoginActivity : AppCompatActivity() {
                 moveMainPage(auth?.currentUser)
             }
         }
-
     }
-
 }
