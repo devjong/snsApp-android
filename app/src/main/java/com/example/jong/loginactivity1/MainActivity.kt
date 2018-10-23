@@ -27,7 +27,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             }
 
             R.id.action_add_photo -> {
-                if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                if (ContextCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.READ_EXTERNAL_STORAGE
+                    ) == PackageManager.PERMISSION_GRANTED
+                ) {
                     startActivity(Intent(this, AddPhotoActivity::class.java))
 
                 }
@@ -35,7 +39,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             }
 
             R.id.action_favorite_alarm -> {
-                var alertFragment =AlertFragment()
+                var alertFragment = AlertFragment()
                 supportFragmentManager.beginTransaction().replace(R.id.main_content, alertFragment).commit()
                 return true
             }
@@ -55,7 +59,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         setContentView(R.layout.activity_main)
 
         bottom_navigation.setOnNavigationItemSelectedListener(this)
-
+        bottom_navigation.selectedItemId = R.id.action_home
         // 사진을 받아올 수 있는 권한
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
     }

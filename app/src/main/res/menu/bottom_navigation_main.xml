@@ -10,7 +10,7 @@
             android:id="@+id/action_search"
             android:enabled="true"
             android:icon="@drawable/ic_search"
-            android:title="@string/home"/>
+            android:title="@string/search"/>
 
     <item
             android:id="@+id/action_add_photo"

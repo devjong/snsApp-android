@@ -10,21 +10,24 @@
             android:layout_height="50dp">
 
         <ImageView
-
+                android:id="@+id/detailviewitem_profile_image"
                 tools:src="@mipmap/ic_launcher"
                 android:layout_margin="7.5dp"
                 android:layout_width="35dp"
                 android:layout_height="35dp"/>
 
         <TextView
+                android:id="@+id/detailviewitem_profile_textview"
                 tools:text="User Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
     </LinearLayout>
     <ImageView
+            android:id="@+id/detailviewitem_imageview_content"
             android:src="@color/com_facebook_blue"
             android:layout_width="match_parent"
+            android:scaleType="centerCrop"
             android:layout_height="250dp"/>
 
     <LinearLayout
@@ -39,15 +42,16 @@
                 android:src="@drawable/ic_favorite_border"
                 android:layout_height="35dp"/>
 
-        <ImageView android:layout_width="35dp"
-                   android:layout_height="35dp"
-                   android:id="@+id/detailviewitem_comment_imageview"
-                   android:src="@drawable/ic_chat_black"/>
-
+        <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:id="@+id/detailviewitem_comment_imageview"
+                android:src="@drawable/ic_chat_black"/>
 
 
     </LinearLayout>
     <TextView
+            android:id="@+id/detailviewitem_favoritecounter_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -55,6 +59,7 @@
 
     <TextView
             tools:text="사진 내용"
+            android:id="@+id/detailviewitem_explain_textview"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="35dp"
             android:layout_width="match_parent"

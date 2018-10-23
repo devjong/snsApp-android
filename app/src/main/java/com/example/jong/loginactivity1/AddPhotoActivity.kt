@@ -94,13 +94,13 @@ class AddPhotoActivity : AppCompatActivity() {
             // 컬렉션은 일종의 경로 images라는 테이블
             // document() or docuemnt(name)
             firestore?.collection("images")?.document()?.set(contentDTO)
-//                ?.addOnCompleteListener {
-//                task ->
-//                println(task.isSuccessful)
-//            }?.addOnFailureListener {
-//                exception ->
-//                println("에러메세지"  + exception.message.toString())
-//            }
+                ?.addOnCompleteListener {
+                task ->
+                println(task.isSuccessful)
+            }?.addOnFailureListener {
+                exception ->
+                println("에러메세지"  + exception.message.toString())
+            }
 
             setResult(Activity.RESULT_OK)
 
