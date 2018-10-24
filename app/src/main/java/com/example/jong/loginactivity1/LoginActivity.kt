@@ -1,8 +1,10 @@
 package com.example.jong.loginactivity1
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.Toast
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
@@ -112,8 +114,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun googleLogin() {
+
         var signInIntent = googleSignInClient?.signInIntent
         startActivityForResult(signInIntent, GOOGLE_LOGIN_CODE)
+
     }
 
 
@@ -125,11 +129,11 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         // Facebook SDK로 값 넘겨주기
         callbackManager?.onActivityResult(requestCode, resultCode, data)
 
-        if (resultCode == GOOGLE_LOGIN_CODE) {
+        if (resultCode == Activity.RESULT_OK && requestCode == GOOGLE_LOGIN_CODE) {
+
             var result = Auth.GoogleSignInApi.getSignInResultFromIntent(data) // 구글에서 성공된 데이터 가 넘어옴
 
             if (result.isSuccess) {
@@ -173,10 +177,12 @@ class LoginActivity : AppCompatActivity() {
 
 
     fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
+        Log.d("bbb", "성공")
         var credential = GoogleAuthProvider.getCredential(account.idToken, null)
         auth?.signInWithCredential(credential)?.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 //다음페이지 호출
+                Log.d("aaa", "성공")
                 moveMainPage(auth?.currentUser)
             }
         }
